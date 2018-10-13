@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.GamePeriodMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.GamePeriod" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="sKey" property="skey" jdbcType="VARCHAR" />
+    <result column="iGameId" property="igameid" jdbcType="BIGINT" />
+    <result column="sGamePeriod" property="sgameperiod" jdbcType="VARCHAR" />
+    <result column="iStatus" property="istatus" jdbcType="SMALLINT" />
+    <result column="iOpen" property="iopen" jdbcType="SMALLINT" />
+    <result column="iManualOpen" property="imanualopen" jdbcType="SMALLINT" />
+    <result column="dStartTime" property="dstarttime" jdbcType="TIMESTAMP" />
+    <result column="dCloseTime" property="dclosetime" jdbcType="TIMESTAMP" />
+    <result column="dOpenTime" property="dopentime" jdbcType="TIMESTAMP" />
+    <result column="dRealOpen" property="drealopen" jdbcType="TIMESTAMP" />
+    <result column="sOpenNum" property="sopennum" jdbcType="VARCHAR" />
+    <result column="iOpenNum1" property="iopennum1" jdbcType="SMALLINT" />
+    <result column="iOpenNum2" property="iopennum2" jdbcType="SMALLINT" />
+    <result column="iOpenNum3" property="iopennum3" jdbcType="SMALLINT" />
+    <result column="iOpenNum4" property="iopennum4" jdbcType="SMALLINT" />
+    <result column="iOpenNum5" property="iopennum5" jdbcType="SMALLINT" />
+    <result column="iOpenNum6" property="iopennum6" jdbcType="SMALLINT" />
+    <result column="iOpenNum7" property="iopennum7" jdbcType="SMALLINT" />
+    <result column="iOpenNum8" property="iopennum8" jdbcType="SMALLINT" />
+    <result column="iOpenNum9" property="iopennum9" jdbcType="SMALLINT" />
+    <result column="iOpenNum10" property="iopennum10" jdbcType="SMALLINT" />
+    <result column="sRemark" property="sremark" jdbcType="VARCHAR" />
+    <result column="dCreateTime" property="dcreatetime" jdbcType="TIMESTAMP" />
+    <result column="dModifyTime" property="dmodifytime" jdbcType="TIMESTAMP" />
+    <result column="sModifier" property="smodifier" jdbcType="VARCHAR" />
+    <result column="sModifyIp" property="smodifyip" jdbcType="VARCHAR" />
+    <result column="sCreator" property="screator" jdbcType="VARCHAR" />
+    <result column="sCreateIp" property="screateip" jdbcType="VARCHAR" />
+    <result column="iIsDeleted" property="iisdeleted" jdbcType="TINYINT" />
+    <result column="iVersion" property="iversion" jdbcType="BIGINT" />
+    <result column="sProperty" property="property" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sKey, iGameId, sGamePeriod, iStatus, iOpen, iManualOpen, dStartTime, dCloseTime, 
+    dOpenTime, dRealOpen, sOpenNum, iOpenNum1, iOpenNum2, iOpenNum3, iOpenNum4, iOpenNum5, 
+    iOpenNum6, iOpenNum7, iOpenNum8, iOpenNum9, iOpenNum10, sRemark, dCreateTime, dModifyTime, 
+    sModifier, sModifyIp, sCreator, sCreateIp, iIsDeleted, iVersion, sProperty
+  </sql>
+  
+  
+  <!-- 	select min(cast(sGameperiod as signed integer)) as sGameperiod, dOpenTime as dOpenTime 
+	from t_gameperiod  
+	where iopen=0 and iGameId = #{iGameId}; -->
+  <select id="nextShowData" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> 
+  	from t_gamePeriod
+  	where iGameId = #{iGameId} and sGameperiod = (select min(cast(sGameperiod as signed integer)) from t_gamePeriod where iGameId = #{iGameId} and iopen=0 and dOpenTime > now()) 
+  </select>
+  
+  
+
+  <select id="getNewDate" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List" /> 
+  	from t_gamePeriod 
+  	where iGameId = #{id} and sGamePeriod = (select min(sGamePeriod) from t_gamePeriod where iOpen = #{iOpen} AND IGameId =#{id})
+  </select>
+  
+  
+  <select id="getByIGameIdAndCount" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" />
+  	from t_gamePeriod
+  	where iGameId = #{iGameId} order by sKey desc limit 0,#{count}
+  </select>
+  
+  
+  <select id="getByIGameIdAndOpenTime" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> 
+  	from t_gamePeriod
+  			<where>
+			<if test="iGameId!=null">and iGameId = #{iGameId}</if>
+			<if test="dOpenTimeFrom!=null">and dOpenTime &gt;= #{dOpenTimeFrom}</if>
+			<if test="dOpenTimeTo!=null">and dOpenTime &lt;= #{dOpenTimeTo}</if>
+		</where>
+		order by sKey desc
+  </select>
+
+    <select id="selectOverPeriodCount" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM `t_gamePeriod` WHERE iGameId =#{iGameId} AND iOpen=0 AND Date(dOpenTime) = DATE(#{date}) ;
+    </select>
+
+
+    <insert id="save">
+  	insert into t_gamePeriod 
+  	(
+  		sKey,iGameId,sGamePeriod,iStatus,iOpen,iManualOpen,dStartTime,dCloseTime,dOpenTime,
+  		dRealOpen,sOpenNum,iOpenNum1,iOpenNum2,iOpenNum3,iOpenNum4,iOpenNum5,iOpenNum6,iOpenNum7
+  		,iOpenNum8,iOpenNum9,iOpenNum10,sRemark,dCreateTime,dModifyTime,sModifier,sModifyIp,sCreator,
+  		sCreateIp,iIsDeleted,iVersion,sProperty
+  	) 
+  	values 
+  	(
+  		#{skey},#{igameid},#{sgameperiod},#{istatus},#{iopen},#{imanualopen},#{dstarttime},#{dclosetime},
+  		#{dopentime},#{drealopen},#{sopennum},#{iopennum1},#{iopennum2},#{iopennum3},#{iopennum4},
+  		#{iopennum5},#{iopennum6},#{iopennum7},#{iopennum8},#{iopennum9},#{iopennum10},#{sremark},#{dcreatetime},
+  		#{dmodifytime},#{smodifier},#{smodifyip},#{screator},#{screateip},#{iisdeleted},#{iversion},#{property}
+  	)
+  </insert>
+  
+  <insert id="saveOrUpdate">
+  	insert into t_gamePeriod 
+  	(
+  		sKey,iGameId,sGamePeriod,iStatus,iOpen,iManualOpen,dStartTime,dCloseTime,dOpenTime,
+  		dRealOpen,sOpenNum,iOpenNum1,iOpenNum2,iOpenNum3,iOpenNum4,iOpenNum5,iOpenNum6,iOpenNum7
+  		,iOpenNum8,iOpenNum9,iOpenNum10,sRemark,dCreateTime,dModifyTime,sModifier,sModifyIp,sCreator,
+  		sCreateIp,iIsDeleted,iVersion,sProperty
+  	) 
+  	values 
+  	(
+  		#{skey},#{igameid},#{sgameperiod},#{istatus},#{iopen},#{imanualopen},#{dstarttime},#{dclosetime},
+  		#{dopentime},#{drealopen},#{sopennum},#{iopennum1},#{iopennum2},#{iopennum3},#{iopennum4},
+  		#{iopennum5},#{iopennum6},#{iopennum7},#{iopennum8},#{iopennum9},#{iopennum10},#{sremark},#{dcreatetime},
+  		#{dmodifytime},#{smodifier},#{smodifyip},#{screator},#{screateip},#{iisdeleted},#{iversion},#{property}
+  	)
+  	ON DUPLICATE KEY UPDATE
+    	dRealOpen = #{drealopen,jdbcType=TIMESTAMP},iOpen = #{iopen},sOpenNum = #{sopennum},iOpenNum1 = #{iopennum1},iOpenNum2 = #{iopennum2},iOpenNum3 = #{iopennum3},iOpenNum4 = #{iopennum4},
+    	iOpenNum5 = #{iopennum5},iOpenNum6 = #{iopennum6},iOpenNum7 = #{iopennum7},iOpenNum8 = #{iopennum8},iOpenNum9 = #{iopennum9},iOpenNum10 = #{iopennum10},sProperty = #{property}
+  </insert>
+  
+  <update id="updateOpenNum">
+    update t_gamePeriod
+    <set>
+      <if test="istatus!=null">iStatus = #{istatus},</if>
+      <if test="iopen!=null">iOpen = #{iopen},</if>
+      <if test="imanualopen!=null">iManualOpen = #{imanualopen},</if>
+      <if test="drealopen!=null">drealopen = #{drealopen},</if>
+      <if test='sopennum!=null and sopennum!=""'>sopennum = #{sopennum},</if>
+      <if test="iopennum1!=null">iOpenNum1 = #{iopennum1},</if>
+      <if test="iopennum2!=null">iOpenNum2 = #{iopennum2},</if>
+      <if test="iopennum3!=null">iOpenNum3 = #{iopennum3},</if>
+      <if test="iopennum4!=null">iOpenNum4 = #{iopennum4},</if>
+      <if test="iopennum5!=null">iOpenNum5 = #{iopennum5},</if>
+      <if test="iopennum6!=null">iOpenNum6 = #{iopennum6},</if>
+      <if test="iopennum7!=null">iOpenNum7 = #{iopennum7},</if>
+      <if test="iopennum8!=null">iOpenNum8 = #{iopennum8},</if>
+      <if test="iopennum9!=null">iOpenNum9 = #{iopennum9},</if>
+      <if test="iopennum10!=null">iOpenNum10 = #{iopennum10},</if>
+      <if test='sremark!=null and sremark!=""'>sremark = #{sremark},</if>
+      <if test="iisdeleted!=null">iisdeleted = #{iisdeleted},</if>
+    </set>
+    <where>
+      and id = #{id}
+    </where>
+    </update>
+
+    <select id="selectTodayPeriodCount" resultType="java.lang.Integer">
+        SELECT count(id) FROM `t_gamePeriod` where iGameId = #{igameId} AND DATE(dOpenTime) = DATE(#{nowDate})
+    </select>
+
+    <select id="selectMaxPeriod" resultType="com.csy.domain.GamePeriod">
+      SELECT * FROM `t_gamePeriod` WHERE iGameId = #{igameId} AND
+        sGamePeriod = (SELECT MAX(sGamePeriod) FROM t_gamePeriod WHERE iGameId = #{igameId} )
+    </select>
+
+    <select id="selectMaxPeriodData" resultType="com.csy.domain.GamePeriod">
+        SELECT <include refid="Base_Column_List" /> FROM `t_gamePeriod` WHERE iGameId = #{igameId} AND
+        sGamePeriod = (SELECT MAX(sGamePeriod) FROM t_gamePeriod WHERE iGameId = #{igameId} AND iOpen =1 )
+    </select>
+
+    <select id="selectAllPeriodNotOpen" resultType="com.csy.domain.GamePeriod">
+        select <include refid="Base_Column_List" />
+        from t_gamePeriod where  iOpen = 0
+    </select>
+
+    <select id="selectMinPeriodData" resultType="com.csy.domain.GamePeriod">
+         SELECT <include refid="Base_Column_List" /> FROM `t_gamePeriod` WHERE iGameId = #{iGameId} AND
+        sGamePeriod = (SELECT Min(cast(sGameperiod as signed integer)) FROM t_gamePeriod WHERE iGameId = #{iGameId} AND iOpen =0 )
+    </select>
+
+    <select id="getFirstPeriodEveryDay" resultType="com.csy.domain.GamePeriod">
+        SELECT <include refid="Base_Column_List" />
+        FROM `t_gamePeriod` where iGameId = #{igameId} AND date_format(dStartTime,'%Y-%m-%d %H:%i') = date_format(dOpenTime,'%Y-%m-%d %H:%i')
+        AND DATE(dStartTime) = DATE(#{date});
+    </select>
+</mapper>

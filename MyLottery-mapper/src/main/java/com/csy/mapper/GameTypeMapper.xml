@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.GameTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.GameType" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sGameName" property="sgamename" jdbcType="VARCHAR" />
+    <result column="iEnable" property="ienable" jdbcType="SMALLINT" />
+    <result column="iCloseTimeSet" property="iclosetimeset" jdbcType="INTEGER" />
+    <result column="iOrder" property="iorder" jdbcType="INTEGER" />
+    <result column="sCreator" property="screator" jdbcType="VARCHAR" />
+    <result column="dCreateTime" property="dcreatetime" jdbcType="TIMESTAMP" />
+    <result column="sCreateIP" property="screateip" jdbcType="VARCHAR" />
+    <result column="sModifier" property="smodifier" jdbcType="VARCHAR" />
+    <result column="dModifyTime" property="dmodifytime" jdbcType="TIMESTAMP" />
+    <result column="sModifierIp" property="smodifierip" jdbcType="VARCHAR" />
+    <result column="iIsDeleted" property="iisdeleted" jdbcType="BIT" />
+    <result column="iVersion" property="iversion" jdbcType="BIGINT" />
+    <result column="sRemark" property="sremark" jdbcType="VARCHAR" />
+    <result column="periodCount" property="periodcount" jdbcType="INTEGER" />
+    <result column="ioverTime" property="iovertime" jdbcType="INTEGER" />
+    <result column="sModifyIp" property="smodifyip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sGameName, iEnable, iCloseTimeSet, iOrder, sCreator, dCreateTime, sCreateIP, 
+    sModifier, dModifyTime, sModifierIp, iIsDeleted, iVersion, sRemark, periodCount, 
+    ioverTime, sModifyIp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gameType
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gameType
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.GameType" >
+    insert into t_gameType (id, sGameName, iEnable, 
+      iCloseTimeSet, iOrder, sCreator, 
+      dCreateTime, sCreateIP, sModifier, 
+      dModifyTime, sModifierIp, iIsDeleted, 
+      iVersion, sRemark, periodCount, 
+      ioverTime, sModifyIp)
+    values (#{id,jdbcType=BIGINT}, #{sgamename,jdbcType=VARCHAR}, #{ienable,jdbcType=SMALLINT}, 
+      #{iclosetimeset,jdbcType=INTEGER}, #{iorder,jdbcType=INTEGER}, #{screator,jdbcType=VARCHAR}, 
+      #{dcreatetime,jdbcType=TIMESTAMP}, #{screateip,jdbcType=VARCHAR}, #{smodifier,jdbcType=VARCHAR}, 
+      #{dmodifytime,jdbcType=TIMESTAMP}, #{smodifierip,jdbcType=VARCHAR}, #{iisdeleted,jdbcType=BIT}, 
+      #{iversion,jdbcType=BIGINT}, #{sremark,jdbcType=VARCHAR}, #{periodcount,jdbcType=INTEGER}, 
+      #{iovertime,jdbcType=INTEGER}, #{smodifyip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.GameType" >
+    insert into t_gameType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sgamename != null" >
+        sGameName,
+      </if>
+      <if test="ienable != null" >
+        iEnable,
+      </if>
+      <if test="iclosetimeset != null" >
+        iCloseTimeSet,
+      </if>
+      <if test="iorder != null" >
+        iOrder,
+      </if>
+      <if test="screator != null" >
+        sCreator,
+      </if>
+      <if test="dcreatetime != null" >
+        dCreateTime,
+      </if>
+      <if test="screateip != null" >
+        sCreateIP,
+      </if>
+      <if test="smodifier != null" >
+        sModifier,
+      </if>
+      <if test="dmodifytime != null" >
+        dModifyTime,
+      </if>
+      <if test="smodifierip != null" >
+        sModifierIp,
+      </if>
+      <if test="iisdeleted != null" >
+        iIsDeleted,
+      </if>
+      <if test="iversion != null" >
+        iVersion,
+      </if>
+      <if test="sremark != null" >
+        sRemark,
+      </if>
+      <if test="periodcount != null" >
+        periodCount,
+      </if>
+      <if test="iovertime != null" >
+        ioverTime,
+      </if>
+      <if test="smodifyip != null" >
+        sModifyIp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sgamename != null" >
+        #{sgamename,jdbcType=VARCHAR},
+      </if>
+      <if test="ienable != null" >
+        #{ienable,jdbcType=SMALLINT},
+      </if>
+      <if test="iclosetimeset != null" >
+        #{iclosetimeset,jdbcType=INTEGER},
+      </if>
+      <if test="iorder != null" >
+        #{iorder,jdbcType=INTEGER},
+      </if>
+      <if test="screator != null" >
+        #{screator,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatetime != null" >
+        #{dcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="screateip != null" >
+        #{screateip,jdbcType=VARCHAR},
+      </if>
+      <if test="smodifier != null" >
+        #{smodifier,jdbcType=VARCHAR},
+      </if>
+      <if test="dmodifytime != null" >
+        #{dmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smodifierip != null" >
+        #{smodifierip,jdbcType=VARCHAR},
+      </if>
+      <if test="iisdeleted != null" >
+        #{iisdeleted,jdbcType=BIT},
+      </if>
+      <if test="iversion != null" >
+        #{iversion,jdbcType=BIGINT},
+      </if>
+      <if test="sremark != null" >
+        #{sremark,jdbcType=VARCHAR},
+      </if>
+      <if test="periodcount != null" >
+        #{periodcount,jdbcType=INTEGER},
+      </if>
+      <if test="iovertime != null" >
+        #{iovertime,jdbcType=INTEGER},
+      </if>
+      <if test="smodifyip != null" >
+        #{smodifyip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.GameType" >
+    update t_gameType
+    <set >
+      <if test="sgamename != null" >
+        sGameName = #{sgamename,jdbcType=VARCHAR},
+      </if>
+      <if test="ienable != null" >
+        iEnable = #{ienable,jdbcType=SMALLINT},
+      </if>
+      <if test="iclosetimeset != null" >
+        iCloseTimeSet = #{iclosetimeset,jdbcType=INTEGER},
+      </if>
+      <if test="iorder != null" >
+        iOrder = #{iorder,jdbcType=INTEGER},
+      </if>
+      <if test="screator != null" >
+        sCreator = #{screator,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatetime != null" >
+        dCreateTime = #{dcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="screateip != null" >
+        sCreateIP = #{screateip,jdbcType=VARCHAR},
+      </if>
+      <if test="smodifier != null" >
+        sModifier = #{smodifier,jdbcType=VARCHAR},
+      </if>
+      <if test="dmodifytime != null" >
+        dModifyTime = #{dmodifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smodifierip != null" >
+        sModifierIp = #{smodifierip,jdbcType=VARCHAR},
+      </if>
+      <if test="iisdeleted != null" >
+        iIsDeleted = #{iisdeleted,jdbcType=BIT},
+      </if>
+      <if test="iversion != null" >
+        iVersion = #{iversion,jdbcType=BIGINT},
+      </if>
+      <if test="sremark != null" >
+        sRemark = #{sremark,jdbcType=VARCHAR},
+      </if>
+      <if test="periodcount != null" >
+        periodCount = #{periodcount,jdbcType=INTEGER},
+      </if>
+      <if test="iovertime != null" >
+        ioverTime = #{iovertime,jdbcType=INTEGER},
+      </if>
+      <if test="smodifyip != null" >
+        sModifyIp = #{smodifyip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.GameType" >
+    update t_gameType
+    set sGameName = #{sgamename,jdbcType=VARCHAR},
+      iEnable = #{ienable,jdbcType=SMALLINT},
+      iCloseTimeSet = #{iclosetimeset,jdbcType=INTEGER},
+      iOrder = #{iorder,jdbcType=INTEGER},
+      sCreator = #{screator,jdbcType=VARCHAR},
+      dCreateTime = #{dcreatetime,jdbcType=TIMESTAMP},
+      sCreateIP = #{screateip,jdbcType=VARCHAR},
+      sModifier = #{smodifier,jdbcType=VARCHAR},
+      dModifyTime = #{dmodifytime,jdbcType=TIMESTAMP},
+      sModifierIp = #{smodifierip,jdbcType=VARCHAR},
+      iIsDeleted = #{iisdeleted,jdbcType=BIT},
+      iVersion = #{iversion,jdbcType=BIGINT},
+      sRemark = #{sremark,jdbcType=VARCHAR},
+      periodCount = #{periodcount,jdbcType=INTEGER},
+      ioverTime = #{iovertime,jdbcType=INTEGER},
+      sModifyIp = #{smodifyip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectPeriodCount" resultType="Integer">
+    SELECT  periodCount FROM `t_gameType` where id= #{iGameId}
+  </select>
+
+
+</mapper>

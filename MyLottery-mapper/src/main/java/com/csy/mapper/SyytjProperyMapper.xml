@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.SyytjProperyMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.SyytjPropery" >
+    <id column="sKey" property="sKey" jdbcType="VARCHAR" />
+    <result column="iSum" property="iSum" jdbcType="VARCHAR" />
+    <result column="sSumBigSmall" property="sSumBigSmall" jdbcType="VARCHAR" />
+    <result column="sSumSingleDouble" property="sSumSingleDouble" jdbcType="VARCHAR" />
+    <result column="sDragonTiger" property="sDragonTiger" jdbcType="VARCHAR" />
+    <result column="sTopThree" property="sTopThree" jdbcType="VARCHAR" />
+    <result column="sMiddleThree" property="sMiddleThree" jdbcType="VARCHAR" />
+    <result column="sPostThree" property="sPostThree" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sKey, iSum, sSumBigSmall, sSumSingleDouble, sDragonTiger, sTopThree, sMiddleThree, 
+    sPostThree
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_syytj_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_syytj_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.SyytjPropery" >
+    insert into t_syytj_propery (sKey, iSum, sSumBigSmall, 
+      sSumSingleDouble, sDragonTiger, sTopThree, 
+      sMiddleThree, sPostThree)
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=VARCHAR}, #{sSumBigSmall,jdbcType=VARCHAR}, 
+      #{sSumSingleDouble,jdbcType=VARCHAR}, #{sDragonTiger,jdbcType=VARCHAR}, #{sTopThree,jdbcType=VARCHAR}, 
+      #{sMiddleThree,jdbcType=VARCHAR}, #{sPostThree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="saveOrUpdate" parameterType="com.csy.domain.SyytjPropery" >
+    insert into t_syytj_propery (sKey, iSum, sSumBigSmall, 
+      sSumSingleDouble, sDragonTiger, sTopThree, 
+      sMiddleThree, sPostThree)
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=VARCHAR}, #{sSumBigSmall,jdbcType=VARCHAR}, 
+      #{sSumSingleDouble,jdbcType=VARCHAR}, #{sDragonTiger,jdbcType=VARCHAR}, #{sTopThree,jdbcType=VARCHAR}, 
+      #{sMiddleThree,jdbcType=VARCHAR}, #{sPostThree,jdbcType=VARCHAR})
+      ON DUPLICATE KEY UPDATE
+      	sKey = #{sKey,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.SyytjPropery" >
+    insert into t_syytj_propery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        sKey,
+      </if>
+      <if test="iSum != null" >
+        iSum,
+      </if>
+      <if test="sSumBigSmall != null" >
+        sSumBigSmall,
+      </if>
+      <if test="sSumSingleDouble != null" >
+        sSumSingleDouble,
+      </if>
+      <if test="sDragonTiger != null" >
+        sDragonTiger,
+      </if>
+      <if test="sTopThree != null" >
+        sTopThree,
+      </if>
+      <if test="sMiddleThree != null" >
+        sMiddleThree,
+      </if>
+      <if test="sPostThree != null" >
+        sPostThree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        #{sKey,jdbcType=VARCHAR},
+      </if>
+      <if test="iSum != null" >
+        #{iSum,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumBigSmall != null" >
+        #{sSumBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumSingleDouble != null" >
+        #{sSumSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTiger != null" >
+        #{sDragonTiger,jdbcType=VARCHAR},
+      </if>
+      <if test="sTopThree != null" >
+        #{sTopThree,jdbcType=VARCHAR},
+      </if>
+      <if test="sMiddleThree != null" >
+        #{sMiddleThree,jdbcType=VARCHAR},
+      </if>
+      <if test="sPostThree != null" >
+        #{sPostThree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.SyytjPropery" >
+    update t_syytj_propery
+    <set >
+      <if test="iSum != null" >
+        iSum = #{iSum,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumBigSmall != null" >
+        sSumBigSmall = #{sSumBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumSingleDouble != null" >
+        sSumSingleDouble = #{sSumSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTiger != null" >
+        sDragonTiger = #{sDragonTiger,jdbcType=VARCHAR},
+      </if>
+      <if test="sTopThree != null" >
+        sTopThree = #{sTopThree,jdbcType=VARCHAR},
+      </if>
+      <if test="sMiddleThree != null" >
+        sMiddleThree = #{sMiddleThree,jdbcType=VARCHAR},
+      </if>
+      <if test="sPostThree != null" >
+        sPostThree = #{sPostThree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.SyytjPropery" >
+    update t_syytj_propery
+    set iSum = #{iSum,jdbcType=VARCHAR},
+      sSumBigSmall = #{sSumBigSmall,jdbcType=VARCHAR},
+      sSumSingleDouble = #{sSumSingleDouble,jdbcType=VARCHAR},
+      sDragonTiger = #{sDragonTiger,jdbcType=VARCHAR},
+      sTopThree = #{sTopThree,jdbcType=VARCHAR},
+      sMiddleThree = #{sMiddleThree,jdbcType=VARCHAR},
+      sPostThree = #{sPostThree,jdbcType=VARCHAR}
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

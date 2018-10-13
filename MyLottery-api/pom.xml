@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.csy</groupId>
+    <artifactId>MyLottery</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>MyLottery-api</artifactId>
+  <packaging>war</packaging>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.csy</groupId>
+  		<artifactId>MyLottery-service</artifactId>
+  	</dependency>
+  	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-amqp</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>redis.clients</groupId>
+	    <artifactId>jedis</artifactId>
+	    <type>jar</type>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+	<!-- 屏蔽内嵌tomcat -->
+	<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+		<!--<scope>provided</scope>-->
+	<!--</dependency>-->
+	
+	<!-- 热部署 -->
+    <!-- <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency> -->
+
+	  <dependency>
+		  <groupId>org.quartz-scheduler</groupId>
+		  <artifactId>quartz</artifactId>
+		  <version>2.2.1</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.quartz-scheduler</groupId>
+		  <artifactId>quartz-jobs</artifactId>
+		  <version>2.2.1</version>
+	  </dependency>
+  </dependencies>
+  
+  <!--<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			  &lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;
+&lt;!&ndash; 	          <configuration>
+	            <mainClass>com.module.a.Application</mainClass>
+	            <layout>ZIP</layout>
+	          </configuration>
+	          <executions>
+	            <execution>
+	              <goals>
+	                <goal>repackage</goal>可以把依赖的包都打包到生成的Jar包中
+	              </goals>
+	            </execution>
+	          </executions> &ndash;&gt;
+			</plugin>
+			&lt;!&ndash; <plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+            	<artifactId>tomcat8-maven-plugin</artifactId>
+            	<version>2.0-beta-1</version>
+			</plugin> &ndash;&gt;
+		</plugins>
+	</build>-->
+
+
+</project>

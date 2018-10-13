@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.MlaftPropertyMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.MlaftProperty" >
+    <id column="sKey" property="sKey" jdbcType="VARCHAR" />
+    <result column="iGYSum" property="iGYSum" jdbcType="INTEGER" />
+    <result column="sGYBigSmall" property="sGYBigSmall" jdbcType="VARCHAR" />
+    <result column="sGYSingleDouble" property="sGYSingleDouble" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum1" property="sDragonTigerNum1" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum2" property="sDragonTigerNum2" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum3" property="sDragonTigerNum3" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum4" property="sDragonTigerNum4" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum5" property="sDragonTigerNum5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sKey, iGYSum, sGYBigSmall, sGYSingleDouble, sDragonTigerNum1, sDragonTigerNum2, sDragonTigerNum3, 
+    sDragonTigerNum4, sDragonTigerNum5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_mlaft_property
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_mlaft_property
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.MlaftProperty" >
+    insert into t_mlaft_property (sKey, iGYSum, sGYBigSmall, 
+      sGYSingleDouble, sDragonTigerNum1, sDragonTigerNum2, 
+      sDragonTigerNum3, sDragonTigerNum4, sDragonTigerNum5
+      )
+    values (#{sKey,jdbcType=VARCHAR}, #{iGYSum,jdbcType=INTEGER}, #{sGYBigSmall,jdbcType=VARCHAR}, 
+      #{sGYSingleDouble,jdbcType=VARCHAR}, #{sDragonTigerNum1,jdbcType=VARCHAR}, #{sDragonTigerNum2,jdbcType=VARCHAR}, 
+      #{sDragonTigerNum3,jdbcType=VARCHAR}, #{sDragonTigerNum4,jdbcType=VARCHAR}, #{sDragonTigerNum5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="saveOrUpdate" parameterType="com.csy.domain.MlaftProperty" >
+    insert into t_mlaft_property (sKey, iGYSum, sGYBigSmall, 
+      sGYSingleDouble, sDragonTigerNum1, sDragonTigerNum2, 
+      sDragonTigerNum3, sDragonTigerNum4, sDragonTigerNum5
+      )
+    values (#{sKey,jdbcType=VARCHAR}, #{iGYSum,jdbcType=INTEGER}, #{sGYBigSmall,jdbcType=VARCHAR}, 
+      #{sGYSingleDouble,jdbcType=VARCHAR}, #{sDragonTigerNum1,jdbcType=VARCHAR}, #{sDragonTigerNum2,jdbcType=VARCHAR}, 
+      #{sDragonTigerNum3,jdbcType=VARCHAR}, #{sDragonTigerNum4,jdbcType=VARCHAR}, #{sDragonTigerNum5,jdbcType=VARCHAR}
+      )
+      ON DUPLICATE KEY UPDATE
+      	sKey = #{sKey,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.MlaftProperty" >
+    insert into t_mlaft_property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        sKey,
+      </if>
+      <if test="iGYSum != null" >
+        iGYSum,
+      </if>
+      <if test="sGYBigSmall != null" >
+        sGYBigSmall,
+      </if>
+      <if test="sGYSingleDouble != null" >
+        sGYSingleDouble,
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        sDragonTigerNum1,
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        sDragonTigerNum2,
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        sDragonTigerNum3,
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        sDragonTigerNum4,
+      </if>
+      <if test="sDragonTigerNum5 != null" >
+        sDragonTigerNum5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        #{sKey,jdbcType=VARCHAR},
+      </if>
+      <if test="iGYSum != null" >
+        #{iGYSum,jdbcType=INTEGER},
+      </if>
+      <if test="sGYBigSmall != null" >
+        #{sGYBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sGYSingleDouble != null" >
+        #{sGYSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        #{sDragonTigerNum1,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        #{sDragonTigerNum2,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        #{sDragonTigerNum3,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        #{sDragonTigerNum4,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum5 != null" >
+        #{sDragonTigerNum5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.MlaftProperty" >
+    update t_mlaft_property
+    <set >
+      <if test="iGYSum != null" >
+        iGYSum = #{iGYSum,jdbcType=INTEGER},
+      </if>
+      <if test="sGYBigSmall != null" >
+        sGYBigSmall = #{sGYBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sGYSingleDouble != null" >
+        sGYSingleDouble = #{sGYSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        sDragonTigerNum1 = #{sDragonTigerNum1,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        sDragonTigerNum2 = #{sDragonTigerNum2,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        sDragonTigerNum3 = #{sDragonTigerNum3,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        sDragonTigerNum4 = #{sDragonTigerNum4,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum5 != null" >
+        sDragonTigerNum5 = #{sDragonTigerNum5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.MlaftProperty" >
+    update t_mlaft_property
+    set iGYSum = #{iGYSum,jdbcType=INTEGER},
+      sGYBigSmall = #{sGYBigSmall,jdbcType=VARCHAR},
+      sGYSingleDouble = #{sGYSingleDouble,jdbcType=VARCHAR},
+      sDragonTigerNum1 = #{sDragonTigerNum1,jdbcType=VARCHAR},
+      sDragonTigerNum2 = #{sDragonTigerNum2,jdbcType=VARCHAR},
+      sDragonTigerNum3 = #{sDragonTigerNum3,jdbcType=VARCHAR},
+      sDragonTigerNum4 = #{sDragonTigerNum4,jdbcType=VARCHAR},
+      sDragonTigerNum5 = #{sDragonTigerNum5,jdbcType=VARCHAR}
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

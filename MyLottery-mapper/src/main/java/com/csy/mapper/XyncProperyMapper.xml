@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.XyncProperyMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.XyncPropery" >
+    <id column="sKey" property="sKey" jdbcType="VARCHAR" />
+    <result column="iSum" property="iSum" jdbcType="INTEGER" />
+    <result column="sSumSingleDouble" property="sSumSingleDouble" jdbcType="VARCHAR" />
+    <result column="sSumBigSmall" property="sSumBigSmall" jdbcType="VARCHAR" />
+    <result column="sSumTailSize" property="sSumTailSize" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum1" property="sDragonTigerNum1" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum2" property="sDragonTigerNum2" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum3" property="sDragonTigerNum3" jdbcType="VARCHAR" />
+    <result column="sDragonTigerNum4" property="sDragonTigerNum4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sKey, iSum, sSumSingleDouble, sSumBigSmall, sSumTailSize, sDragonTigerNum1, sDragonTigerNum2, 
+    sDragonTigerNum3, sDragonTigerNum4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_xync_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_xync_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.XyncPropery" >
+    insert into t_xync_propery (sKey, iSum, sSumSingleDouble, 
+      sSumBigSmall, sSumTailSize, sDragonTigerNum1, 
+      sDragonTigerNum2, sDragonTigerNum3, sDragonTigerNum4
+      )
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=INTEGER}, #{sSumSingleDouble,jdbcType=VARCHAR}, 
+      #{sSumBigSmall,jdbcType=VARCHAR}, #{sSumTailSize,jdbcType=VARCHAR}, #{sDragonTigerNum1,jdbcType=VARCHAR}, 
+      #{sDragonTigerNum2,jdbcType=VARCHAR}, #{sDragonTigerNum3,jdbcType=VARCHAR}, #{sDragonTigerNum4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="saveOrUpdate" parameterType="com.csy.domain.XyncPropery" >
+    insert into t_xync_propery (sKey, iSum, sSumSingleDouble, 
+      sSumBigSmall, sSumTailSize, sDragonTigerNum1, 
+      sDragonTigerNum2, sDragonTigerNum3, sDragonTigerNum4
+      )
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=INTEGER}, #{sSumSingleDouble,jdbcType=VARCHAR}, 
+      #{sSumBigSmall,jdbcType=VARCHAR}, #{sSumTailSize,jdbcType=VARCHAR}, #{sDragonTigerNum1,jdbcType=VARCHAR}, 
+      #{sDragonTigerNum2,jdbcType=VARCHAR}, #{sDragonTigerNum3,jdbcType=VARCHAR}, #{sDragonTigerNum4,jdbcType=VARCHAR}
+      )
+      ON DUPLICATE KEY UPDATE
+      	sKey = #{sKey,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.XyncPropery" >
+    insert into t_xync_propery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        sKey,
+      </if>
+      <if test="iSum != null" >
+        iSum,
+      </if>
+      <if test="sSumSingleDouble != null" >
+        sSumSingleDouble,
+      </if>
+      <if test="sSumBigSmall != null" >
+        sSumBigSmall,
+      </if>
+      <if test="sSumTailSize != null" >
+        sSumTailSize,
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        sDragonTigerNum1,
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        sDragonTigerNum2,
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        sDragonTigerNum3,
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        sDragonTigerNum4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        #{sKey,jdbcType=VARCHAR},
+      </if>
+      <if test="iSum != null" >
+        #{iSum,jdbcType=INTEGER},
+      </if>
+      <if test="sSumSingleDouble != null" >
+        #{sSumSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumBigSmall != null" >
+        #{sSumBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumTailSize != null" >
+        #{sSumTailSize,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        #{sDragonTigerNum1,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        #{sDragonTigerNum2,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        #{sDragonTigerNum3,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        #{sDragonTigerNum4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.XyncPropery" >
+    update t_xync_propery
+    <set >
+      <if test="iSum != null" >
+        iSum = #{iSum,jdbcType=INTEGER},
+      </if>
+      <if test="sSumSingleDouble != null" >
+        sSumSingleDouble = #{sSumSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumBigSmall != null" >
+        sSumBigSmall = #{sSumBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sSumTailSize != null" >
+        sSumTailSize = #{sSumTailSize,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum1 != null" >
+        sDragonTigerNum1 = #{sDragonTigerNum1,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum2 != null" >
+        sDragonTigerNum2 = #{sDragonTigerNum2,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum3 != null" >
+        sDragonTigerNum3 = #{sDragonTigerNum3,jdbcType=VARCHAR},
+      </if>
+      <if test="sDragonTigerNum4 != null" >
+        sDragonTigerNum4 = #{sDragonTigerNum4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.XyncPropery" >
+    update t_xync_propery
+    set iSum = #{iSum,jdbcType=INTEGER},
+      sSumSingleDouble = #{sSumSingleDouble,jdbcType=VARCHAR},
+      sSumBigSmall = #{sSumBigSmall,jdbcType=VARCHAR},
+      sSumTailSize = #{sSumTailSize,jdbcType=VARCHAR},
+      sDragonTigerNum1 = #{sDragonTigerNum1,jdbcType=VARCHAR},
+      sDragonTigerNum2 = #{sDragonTigerNum2,jdbcType=VARCHAR},
+      sDragonTigerNum3 = #{sDragonTigerNum3,jdbcType=VARCHAR},
+      sDragonTigerNum4 = #{sDragonTigerNum4,jdbcType=VARCHAR}
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

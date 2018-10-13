@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.Fc3dPropertyMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.Fc3dProperty" >
+    <id column="sKey" property="sKey" jdbcType="VARCHAR" />
+    <result column="iSum" property="iSum" jdbcType="INTEGER" />
+    <result column="sSumBigSmall" property="sSumBigSmall" jdbcType="VARCHAR" />
+    <result column="sSumSingleDouble" property="sSumSingleDouble" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    sKey, iSum, sSumBigSmall, sSumSingleDouble
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultType="com.csy.domain.Fc3dProperty">
+    select 
+    sKey, iSum, sSumBigSmall, sSumSingleDouble
+    from t_fc3d_property
+    where sKey = #{sKey}
+  </select>
+  
+  <insert id="insert" parameterType="com.csy.domain.Fc3dProperty" >
+    insert into t_fc3d_property (sKey, iSum, sSumBigSmall, 
+      sSumSingleDouble)
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=INTEGER}, #{sSumBigSmall,jdbcType=VARCHAR}, 
+      #{sSumSingleDouble,jdbcType=VARCHAR})
+  </insert>
+  <insert id="saveOrUpdate" parameterType="com.csy.domain.Fc3dProperty" >
+    insert into t_fc3d_property (sKey, iSum, sSumBigSmall, 
+      sSumSingleDouble)
+    values (#{sKey,jdbcType=VARCHAR}, #{iSum,jdbcType=INTEGER}, #{sSumBigSmall,jdbcType=VARCHAR}, 
+      #{sSumSingleDouble,jdbcType=VARCHAR})
+      ON DUPLICATE KEY UPDATE
+      	sKey = #{sKey,jdbcType=VARCHAR}
+  </insert>
+  
+</mapper>

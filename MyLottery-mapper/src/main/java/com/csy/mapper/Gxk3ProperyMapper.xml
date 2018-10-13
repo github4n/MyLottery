@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.Gxk3ProperyMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.Gxk3Propery" >
+    <id column="sKey" property="sKey" jdbcType="VARCHAR" />
+    <result column="sSum" property="sSum" jdbcType="INTEGER" />
+    <result column="sSingleDouble" property="sSingleDouble" jdbcType="VARCHAR" />
+    <result column="sBigSmall" property="sBigSmall" jdbcType="VARCHAR" />
+    <result column="sFishShrimpCrab1" property="sFishShrimpCrab1" jdbcType="VARCHAR" />
+    <result column="sFishShrimpCrab2" property="sFishShrimpCrab2" jdbcType="VARCHAR" />
+    <result column="sFishShrimpCrab3" property="sFishShrimpCrab3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sKey, sSum, sSingleDouble, sBigSmall, sFishShrimpCrab1, sFishShrimpCrab2, sFishShrimpCrab3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gxk3_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_gxk3_propery
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.Gxk3Propery" >
+    insert into t_gxk3_propery (sKey, sSum, sSingleDouble, 
+      sBigSmall, sFishShrimpCrab1, sFishShrimpCrab2, 
+      sFishShrimpCrab3)
+    values (#{sKey,jdbcType=VARCHAR}, #{sSum,jdbcType=INTEGER}, #{sSingleDouble,jdbcType=VARCHAR}, 
+      #{sBigSmall,jdbcType=VARCHAR}, #{sFishShrimpCrab1,jdbcType=VARCHAR}, #{sFishShrimpCrab2,jdbcType=VARCHAR}, 
+      #{sFishShrimpCrab3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="saveOrUpdate" parameterType="com.csy.domain.Gxk3Propery" >
+    insert into t_gxk3_propery (sKey, sSum, sSingleDouble, 
+      sBigSmall, sFishShrimpCrab1, sFishShrimpCrab2, 
+      sFishShrimpCrab3)
+    values (#{sKey,jdbcType=VARCHAR}, #{sSum,jdbcType=INTEGER}, #{sSingleDouble,jdbcType=VARCHAR}, 
+      #{sBigSmall,jdbcType=VARCHAR}, #{sFishShrimpCrab1,jdbcType=VARCHAR}, #{sFishShrimpCrab2,jdbcType=VARCHAR}, 
+      #{sFishShrimpCrab3,jdbcType=VARCHAR})
+      ON DUPLICATE KEY UPDATE
+      	sKey = #{sKey,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.Gxk3Propery" >
+    insert into t_gxk3_propery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        sKey,
+      </if>
+      <if test="sSum != null" >
+        sSum,
+      </if>
+      <if test="sSingleDouble != null" >
+        sSingleDouble,
+      </if>
+      <if test="sBigSmall != null" >
+        sBigSmall,
+      </if>
+      <if test="sFishShrimpCrab1 != null" >
+        sFishShrimpCrab1,
+      </if>
+      <if test="sFishShrimpCrab2 != null" >
+        sFishShrimpCrab2,
+      </if>
+      <if test="sFishShrimpCrab3 != null" >
+        sFishShrimpCrab3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sKey != null" >
+        #{sKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sSum != null" >
+        #{sSum,jdbcType=INTEGER},
+      </if>
+      <if test="sSingleDouble != null" >
+        #{sSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sBigSmall != null" >
+        #{sBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab1 != null" >
+        #{sFishShrimpCrab1,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab2 != null" >
+        #{sFishShrimpCrab2,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab3 != null" >
+        #{sFishShrimpCrab3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.Gxk3Propery" >
+    update t_gxk3_propery
+    <set >
+      <if test="sSum != null" >
+        sSum = #{sSum,jdbcType=INTEGER},
+      </if>
+      <if test="sSingleDouble != null" >
+        sSingleDouble = #{sSingleDouble,jdbcType=VARCHAR},
+      </if>
+      <if test="sBigSmall != null" >
+        sBigSmall = #{sBigSmall,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab1 != null" >
+        sFishShrimpCrab1 = #{sFishShrimpCrab1,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab2 != null" >
+        sFishShrimpCrab2 = #{sFishShrimpCrab2,jdbcType=VARCHAR},
+      </if>
+      <if test="sFishShrimpCrab3 != null" >
+        sFishShrimpCrab3 = #{sFishShrimpCrab3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.Gxk3Propery" >
+    update t_gxk3_propery
+    set sSum = #{sSum,jdbcType=INTEGER},
+      sSingleDouble = #{sSingleDouble,jdbcType=VARCHAR},
+      sBigSmall = #{sBigSmall,jdbcType=VARCHAR},
+      sFishShrimpCrab1 = #{sFishShrimpCrab1,jdbcType=VARCHAR},
+      sFishShrimpCrab2 = #{sFishShrimpCrab2,jdbcType=VARCHAR},
+      sFishShrimpCrab3 = #{sFishShrimpCrab3,jdbcType=VARCHAR}
+    where sKey = #{sKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

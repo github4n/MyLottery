@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.NavigationMapper">
+	<resultMap type="com.csy.domain.Navigation" id="navigationMap">
+		<id column="iGameId" property="iGameId"/>
+		<result column="sUrl" property="sUrl"/>
+	    <result column="sName" property="sName"/>
+	</resultMap>
+	
+	<insert id="save" parameterType="com.csy.domain.Navigation" >
+	    insert into t_navigation (iGameId, sUrl, sName
+	      )
+	    values (#{iGameId}, #{sUrl}, #{sName}
+	      )
+  	</insert>
+	
+	<select id="getById" resultType="com.csy.domain.Navigation">
+		select iGameId,sUrl,sName
+		from t_navigation
+		where iGameId = #{id}
+	</select>
+	
+	<select id="getAll" resultType="com.csy.domain.Navigation">
+		select iGameId,sUrl,sName
+		from t_navigation
+	</select>
+</mapper>

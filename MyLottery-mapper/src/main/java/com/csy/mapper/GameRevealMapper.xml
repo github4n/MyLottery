@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csy.mapper.GameRevealMapper" >
+  <resultMap id="BaseResultMap" type="com.csy.domain.GameReveal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sshowId" property="sshowId" jdbcType="VARCHAR" />
+    <result column="igameId" property="igameId" jdbcType="INTEGER" />
+    <result column="srevealTitle" property="srevealTitle" jdbcType="VARCHAR" />
+    <result column="srevealUrl" property="srevealUrl" jdbcType="VARCHAR" />
+    <result column="srevealImg" property="srevealImg" jdbcType="VARCHAR" />
+    <result column="srevealImg2" property="srevealImg2" jdbcType="VARCHAR" />
+    <result column="dCreateTime" property="dCreateTime" jdbcType="TIMESTAMP" />
+    <result column="dModifyTime" property="dModifyTime" jdbcType="TIMESTAMP" />
+    <result column="sModifier" property="sModifier" jdbcType="VARCHAR" />
+    <result column="sModifyIp" property="sModifyIp" jdbcType="VARCHAR" />
+    <result column="sCreator" property="sCreator" jdbcType="VARCHAR" />
+    <result column="sCreateIp" property="sCreateIp" jdbcType="VARCHAR" />
+    <result column="iIsDeleted" property="iIsDeleted" jdbcType="TINYINT" />
+    <result column="iVersion" property="iVersion" jdbcType="BIGINT" />
+    <result column="iviewCount" property="iviewCount" jdbcType="INTEGER" />
+    <result column="srevealSource" property="srevealSource" jdbcType="VARCHAR" />
+    <result column="srevealAuthor" property="srevealAuthor" jdbcType="VARCHAR" />
+    <result column="drevealEditTime" property="drevealEditTime" jdbcType="TIMESTAMP" />
+    <result column="srevealContent" property="srevealContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sshowId, igameId, srevealTitle, srevealUrl, srevealImg, srevealImg2, dCreateTime, 
+    dModifyTime, sModifier, sModifyIp, sCreator, sCreateIp, iIsDeleted, iVersion, iviewCount, 
+    srevealSource, srevealAuthor, drevealEditTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    srevealContent
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_gameReveal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.csy.domain.GameReveal" >
+    insert into t_gameReveal (id, sshowId, igameId, 
+      srevealTitle, srevealUrl, srevealImg, 
+      srevealImg2, dCreateTime, dModifyTime, 
+      sModifier, sModifyIp, sCreator, 
+      sCreateIp, iIsDeleted, iVersion, 
+      iviewCount, srevealSource, srevealAuthor, 
+      drevealEditTime, srevealContent)
+    values (#{id,jdbcType=INTEGER}, #{sshowId,jdbcType=VARCHAR}, #{igameId,jdbcType=INTEGER}, 
+      #{srevealTitle,jdbcType=VARCHAR}, #{srevealUrl,jdbcType=VARCHAR}, #{srevealImg,jdbcType=VARCHAR}, 
+      #{srevealImg2,jdbcType=VARCHAR}, #{dCreateTime,jdbcType=TIMESTAMP}, #{dModifyTime,jdbcType=TIMESTAMP}, 
+      #{sModifier,jdbcType=VARCHAR}, #{sModifyIp,jdbcType=VARCHAR}, #{sCreator,jdbcType=VARCHAR}, 
+      #{sCreateIp,jdbcType=VARCHAR}, #{iIsDeleted,jdbcType=TINYINT}, #{iVersion,jdbcType=BIGINT}, 
+      #{iviewCount,jdbcType=INTEGER}, #{srevealSource,jdbcType=VARCHAR}, #{srevealAuthor,jdbcType=VARCHAR}, 
+      #{drevealEditTime,jdbcType=TIMESTAMP}, #{srevealContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csy.domain.GameReveal" >
+    insert into t_gameReveal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sshowId != null" >
+        sshowId,
+      </if>
+      <if test="igameId != null" >
+        igameId,
+      </if>
+      <if test="srevealTitle != null" >
+        srevealTitle,
+      </if>
+      <if test="srevealUrl != null" >
+        srevealUrl,
+      </if>
+      <if test="srevealImg != null" >
+        srevealImg,
+      </if>
+      <if test="srevealImg2 != null" >
+        srevealImg2,
+      </if>
+      <if test="dCreateTime != null" >
+        dCreateTime,
+      </if>
+      <if test="dModifyTime != null" >
+        dModifyTime,
+      </if>
+      <if test="sModifier != null" >
+        sModifier,
+      </if>
+      <if test="sModifyIp != null" >
+        sModifyIp,
+      </if>
+      <if test="sCreator != null" >
+        sCreator,
+      </if>
+      <if test="sCreateIp != null" >
+        sCreateIp,
+      </if>
+      <if test="iIsDeleted != null" >
+        iIsDeleted,
+      </if>
+      <if test="iVersion != null" >
+        iVersion,
+      </if>
+      <if test="iviewCount != null" >
+        iviewCount,
+      </if>
+      <if test="srevealSource != null" >
+        srevealSource,
+      </if>
+      <if test="srevealAuthor != null" >
+        srevealAuthor,
+      </if>
+      <if test="drevealEditTime != null" >
+        drevealEditTime,
+      </if>
+      <if test="srevealContent != null" >
+        srevealContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sshowId != null" >
+        #{sshowId,jdbcType=VARCHAR},
+      </if>
+      <if test="igameId != null" >
+        #{igameId,jdbcType=INTEGER},
+      </if>
+      <if test="srevealTitle != null" >
+        #{srevealTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealUrl != null" >
+        #{srevealUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealImg != null" >
+        #{srevealImg,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealImg2 != null" >
+        #{srevealImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="dCreateTime != null" >
+        #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dModifyTime != null" >
+        #{dModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sModifier != null" >
+        #{sModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="sModifyIp != null" >
+        #{sModifyIp,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreator != null" >
+        #{sCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateIp != null" >
+        #{sCreateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="iIsDeleted != null" >
+        #{iIsDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="iVersion != null" >
+        #{iVersion,jdbcType=BIGINT},
+      </if>
+      <if test="iviewCount != null" >
+        #{iviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="srevealSource != null" >
+        #{srevealSource,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealAuthor != null" >
+        #{srevealAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="drevealEditTime != null" >
+        #{drevealEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srevealContent != null" >
+        #{srevealContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csy.domain.GameReveal" >
+    update t_gameReveal
+    <set >
+      <if test="sshowId != null" >
+        sshowId = #{sshowId,jdbcType=VARCHAR},
+      </if>
+      <if test="igameId != null" >
+        igameId = #{igameId,jdbcType=INTEGER},
+      </if>
+      <if test="srevealTitle != null" >
+        srevealTitle = #{srevealTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealUrl != null" >
+        srevealUrl = #{srevealUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealImg != null" >
+        srevealImg = #{srevealImg,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealImg2 != null" >
+        srevealImg2 = #{srevealImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="dCreateTime != null" >
+        dCreateTime = #{dCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dModifyTime != null" >
+        dModifyTime = #{dModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sModifier != null" >
+        sModifier = #{sModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="sModifyIp != null" >
+        sModifyIp = #{sModifyIp,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreator != null" >
+        sCreator = #{sCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateIp != null" >
+        sCreateIp = #{sCreateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="iIsDeleted != null" >
+        iIsDeleted = #{iIsDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="iVersion != null" >
+        iVersion = #{iVersion,jdbcType=BIGINT},
+      </if>
+      <if test="iviewCount != null" >
+        iviewCount = #{iviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="srevealSource != null" >
+        srevealSource = #{srevealSource,jdbcType=VARCHAR},
+      </if>
+      <if test="srevealAuthor != null" >
+        srevealAuthor = #{srevealAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="drevealEditTime != null" >
+        drevealEditTime = #{drevealEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srevealContent != null" >
+        srevealContent = #{srevealContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.csy.domain.GameReveal" >
+    update t_gameReveal
+    set sshowId = #{sshowId,jdbcType=VARCHAR},
+      igameId = #{igameId,jdbcType=INTEGER},
+      srevealTitle = #{srevealTitle,jdbcType=VARCHAR},
+      srevealUrl = #{srevealUrl,jdbcType=VARCHAR},
+      srevealImg = #{srevealImg,jdbcType=VARCHAR},
+      srevealImg2 = #{srevealImg2,jdbcType=VARCHAR},
+      dCreateTime = #{dCreateTime,jdbcType=TIMESTAMP},
+      dModifyTime = #{dModifyTime,jdbcType=TIMESTAMP},
+      sModifier = #{sModifier,jdbcType=VARCHAR},
+      sModifyIp = #{sModifyIp,jdbcType=VARCHAR},
+      sCreator = #{sCreator,jdbcType=VARCHAR},
+      sCreateIp = #{sCreateIp,jdbcType=VARCHAR},
+      iIsDeleted = #{iIsDeleted,jdbcType=TINYINT},
+      iVersion = #{iVersion,jdbcType=BIGINT},
+      iviewCount = #{iviewCount,jdbcType=INTEGER},
+      srevealSource = #{srevealSource,jdbcType=VARCHAR},
+      srevealAuthor = #{srevealAuthor,jdbcType=VARCHAR},
+      drevealEditTime = #{drevealEditTime,jdbcType=TIMESTAMP},
+      srevealContent = #{srevealContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csy.domain.GameReveal" >
+    update t_gameReveal
+    set sshowId = #{sshowId,jdbcType=VARCHAR},
+      igameId = #{igameId,jdbcType=INTEGER},
+      srevealTitle = #{srevealTitle,jdbcType=VARCHAR},
+      srevealUrl = #{srevealUrl,jdbcType=VARCHAR},
+      srevealImg = #{srevealImg,jdbcType=VARCHAR},
+      srevealImg2 = #{srevealImg2,jdbcType=VARCHAR},
+      dCreateTime = #{dCreateTime,jdbcType=TIMESTAMP},
+      dModifyTime = #{dModifyTime,jdbcType=TIMESTAMP},
+      sModifier = #{sModifier,jdbcType=VARCHAR},
+      sModifyIp = #{sModifyIp,jdbcType=VARCHAR},
+      sCreator = #{sCreator,jdbcType=VARCHAR},
+      sCreateIp = #{sCreateIp,jdbcType=VARCHAR},
+      iIsDeleted = #{iIsDeleted,jdbcType=TINYINT},
+      iVersion = #{iVersion,jdbcType=BIGINT},
+      iviewCount = #{iviewCount,jdbcType=INTEGER},
+      srevealSource = #{srevealSource,jdbcType=VARCHAR},
+      srevealAuthor = #{srevealAuthor,jdbcType=VARCHAR},
+      drevealEditTime = #{drevealEditTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByIgameId" resultMap="BaseResultMap"> 
+  	select *
+  	from t_gameReveal where igameId = #{iGameId}
+  </select>
+</mapper>
